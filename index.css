@@ -1,0 +1,35 @@
+body {
+    background-color: rgb(90, 90, 90);
+}
+
+h1,
+h2 {
+    margin: auto;
+    padding: 2vh 2vw 2vh 2vw;
+    width: fit-content;
+    font-size: 40px;
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(213, 213, 213);
+}
+
+.container {
+    margin: auto;
+    padding: 1vh 1vw 1vh 1vw;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: rgb(213, 213, 213);
+    width: fit-content;
+    position: relative;
+    top: 1vh;
+}
+
+.container-elements {
+    display: block;
+    margin: 1vh auto 1vh auto;
+    border-radius: 5px;
+    width: 45vw;
+    font-size: 20px;
+    font-family: 'Titillium Web', sans-serif;
+    color: black;
+}

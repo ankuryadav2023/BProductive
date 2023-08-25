@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>BProductive</title>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <div class="container">
+        <input id="title" class="container-elements" type="text" placeholder="enter title here"
+            style="border: 2px solid rgb(173, 173, 173);">
+        <input id="desc" class="container-elements" type="text" placeholder="enter description here"
+            style="border: 2px solid rgb(173, 173, 173);">
+        <button id="add" class="container-elements" type="button"
+            style="width: 100px; background-color: white;">Add</button>
+    </div>
+    <h2>Find Your Todos Here</h2>
+    <div id='todoc' class="container" style="position: relative; top: 10px;"></div>
+    <script>
+        let temp = 0;
+        let todoc = document.getElementById('todoc');
+        if (localStorage.length != 0) {
+            for (var key in localStorage) {
+                if (localStorage.getItem(key) != null) {
+                    let pt = document.createElement('p');
+                    pt.id = 't'.concat(temp.toString());
+                    pt.classList.add('container-elements');
+                    pt.style.boxShadow = '2px 2px rgb(173, 173, 173)';
+                    pt.style.backgroundColor = 'white';
+                    pt.style.overflow = 'auto';
+                    let pd = document.createElement('p');
+                    pd.id = 'd'.concat(temp.toString());
+                    pd.classList.add('container-elements');
+                    pd.style.boxShadow = '2px 2px rgb(173, 173, 173)';
+                    pd.style.backgroundColor = 'white';
+                    pd.style.overflow = 'auto';
+                    let delet = document.createElement('button');
+                    delet.type = "button";
+                    delet.id = 'b'.concat(temp.toString());
+                    delet.classList.add('container-elements');
+                    delet.style.marginBottom = '20px';
+                    delet.style.width = 'fit-content';
+                    delet.innerHTML = 'Delete';
+                    delet.onclick = function () {
+                        let idv = delet.id[1];
+                        let t = document.getElementById('t'.concat(idv));
+                        localStorage.removeItem(t.innerHTML);
+                        t.remove();
+                        let d = document.getElementById('d'.concat(idv));
+                        d.remove();
+                        let b = document.getElementById('b'.concat(idv));
+                        b.remove();
+
+                        check();
+                    };
+                    pt.innerHTML = key;
+                    pd.innerHTML = localStorage.getItem(key);
+                    todoc.append(pt, pd, delet);
+                    todoc.style.visibility = 'visible';
+                    temp += 1;
+                }
+            }
+        }
+        function check() {
+            if (todoc.innerHTML == "") {
+                todoc.style.visibility = 'hidden';
+                temp = 0;
+            }
+            else {
+                todoc.style.visibility = 'visible';
+            }
+        }
+        check();
+        let add = document.getElementById('add');
+        add.addEventListener('click', () => {
+            let pt = document.createElement('p');
+            pt.id = 't'.concat(temp.toString());
+            pt.classList.add('container-elements');
+            pt.style.boxShadow = '2px 2px rgb(173, 173, 173)';
+            pt.style.backgroundColor = 'white';
+            pt.style.overflow = 'auto';
+            let pd = document.createElement('p');
+            pd.id = 'd'.concat(temp.toString());
+            pd.classList.add('container-elements');
+            pd.style.boxShadow = '2px 2px rgb(173, 173, 173)';
+            pd.style.backgroundColor = 'white';
+            pd.style.overflow = 'auto';
+            let delet = document.createElement('button');
+            delet.type = "button";
+            delet.id = 'b'.concat(temp.toString());
+            delet.classList.add('container-elements');
+            delet.style.marginBottom = '20px';
+            delet.style.width = 'fit-content';
+            delet.innerHTML = 'Delete';
+            delet.onclick = function () {
+                let idv = delet.id[1];
+                let t = document.getElementById('t'.concat(idv));
+                localStorage.removeItem(t.innerHTML);
+                t.remove();
+                let d = document.getElementById('d'.concat(idv));
+                d.remove();
+                let b = document.getElementById('b'.concat(idv));
+                b.remove();
+
+                check();
+            };
+            pt.innerHTML = title.value;
+            pd.innerHTML = desc.value;
+            todoc.append(pt, pd, delet);
+            todoc.style.visibility = 'visible';
+            localStorage.setItem(title.value, desc.value);
+            temp += 1;
+        });
+    </script>
+</body>
+
+</html>
